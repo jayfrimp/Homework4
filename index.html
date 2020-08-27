@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>COVID-19 Tracker</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <title>COVID-19 Tracker</title>
+</head>
+<body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand text-dark" href="#">COVID-19 Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarVav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Press Release</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About COVID-19</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Discharge Policy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Latest Update</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Previous Update</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <br>
+        <div class="container">
+          <div class="row text-white text-center" style="height: 150px;">
+            <div class="col bg-primary">
+              <h3>New Cases</h3>
+              <h3><span id="newcase"></span></h3>
+            </div>
+            <div class="col bg-warning">
+              <h3>Confirmed Cases</h3>
+              <h3><span id="total"></span></h3>
+            </div>
+          </div>
+          <div class="row bg-warning text-white text-center" style="height: 150px;">
+            <div class="col bg-danger">
+              <h3>Active Cases</h3>
+              <h3><span id="active"></span></h3>
+            </div>
+            <div class="col bg-success text-white">
+              <h3>Recoveries/Discharged</h3>
+              <h3><span id="recov"></span></h3>
+            </div>
+            <div class="col bg-dark text-white">
+              <h3>Deaths</h3>
+              <h3><span id="death"></span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+      <script>
+        let newcase = document.getElementById('newcase')
+        let total = document.getElementById('total')
+        let active = document.getElementById('active')
+        let recov = document.getElementById('recov')
+        let death = document.getElementById('death')
+        fetch('http://127.0.0.1:5000/covid')
+              .then(res => res.json())
+              .then(data => {
+                  newcase.innerHTML = data.newcase;
+                  total.innerHTML = data.total;
+                  active.innerHTML = data.active;
+                  recov.innerHTML = data.recov;
+                  death.innerHTML = data.death;
+              })
+      </script>
+</body>
+
+
+</html>
